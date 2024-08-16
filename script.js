@@ -26,8 +26,8 @@ async function toJSON(body) {
     const { done, value } = await reader.read();
 
     if (done) {
-      if (chunks[0].includes("limit")) {
-        return JSON.parse(chunks.join(""));
+      if (chunks[0].includes("R")) {
+        return;
       }
       return JSON.parse(chunks.join(""));
     }
@@ -67,9 +67,8 @@ async function getImages() {
     ]);
 
     panels.forEach(async (panel, index) => {
-      const jsonData = await toJSON(data[index].body); // TODO replace for index
-      console.log(jsonData);
-      if (typeof jsonData === "string") {
+      const jsonData = await toJSON(data[index].body);
+      if (jsonData === undefined) {
         failCase();
 
         throw new Error("Error fetching image");
