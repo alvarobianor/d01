@@ -2,7 +2,7 @@ const panels = document.querySelectorAll(".panel");
 
 const errorImage = `url(https://imageio.forbes.com/blogs-images/zarastone/files/2017/05/21Amazon-Barkley-404.jpg?height=711&width=711&fit=bounds)`;
 function getQueryUrl(query) {
-  return `https://api.unsplash.com/photos/random/?client_id=k9GzUPcagZ5BEMAP6kRAHAWP-4Npu9xguZfxRKfZQq4&query=${query}&count=1`;
+  return `https://api.unsplash.com/photos/random/?client_id=Dzb1Toq4uryyL5mo7tPUekl6584GEoHgOO5ltKUHw50&query=${query}&count=1`;
 }
 
 function removeActiveClasses() {
@@ -26,7 +26,7 @@ async function toJSON(body) {
     const { done, value } = await reader.read();
 
     if (done) {
-      if (chunks[0].includes("R")) {
+      if (chunks[0] == "Rate Limit Exceeded") {
         return;
       }
       return JSON.parse(chunks.join(""));
